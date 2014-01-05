@@ -153,7 +153,8 @@ colors peaksea
 nnoremap <Leader>l :call LoadPerlModule()<CR>
 
 function! LoadPerlModule()
-    execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
+    let a:module_name = substitute(expand("<cWORD>"), ',', '', 'g')
+    execute 'e `perldoc -l ' . a:module_name  . '`'
 endfunction
 
 function! PerlMappings()
