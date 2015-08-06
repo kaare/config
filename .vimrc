@@ -15,8 +15,8 @@ set title
 set foldcolumn=3
 
 " scrolling and viewport
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
+nnoremap <C-e> 40<C-e>
+nnoremap <C-y> 40<C-y>
 set scrolloff=3
 
 set ruler
@@ -40,15 +40,17 @@ set autoindent
 set backspace=indent,eol,start
 
 set tabstop=4
-set expandtab
+" set expandtab
 set shiftwidth=4
 set shiftround
 
 set matchpairs+=<:>
 
-iab phdr #! /usr/bin/perl -w
-iab pdbg use Data::Dumper 'Dumper';<CR>warn Dumper [];^[hi
+iab phdr #!/usr/bin/env perl<CR><CR>use 5.010;<CR>use strict;<CR>use warnings;<CR>
+iab pdbg use Data::Dumper 'Dumper';<CR>$Data::Dumper::Maxdepth = 4;<CR>warn Dumper([ ]), ' ';<ESC>$8hi
 
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
 
 " Searching
 set ignorecase   
@@ -58,7 +60,6 @@ set hlsearch
 
 " TList
 nnoremap <silent> <F8> :Tlist<CR>
-
 
 " TagExplorer
 let TE_Ctags_Path = 'exuberant-ctags'
@@ -198,3 +199,9 @@ au BufRead,BufNewFile entry* set filetype=galuga
 map ,rf <Esc>:'<,'>! ~/bin/extract_perl_sub.pl<CR>
 "let g:solarized_termcolors=256
 "colorscheme solarized
+
+" Simplenote
+let g:SimplenoteUsername = "kaare@jasonic.dk"
+let g:SimplenotePassword = "******"
+
+set clipboard=unnamedplus
